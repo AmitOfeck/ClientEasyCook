@@ -5,10 +5,13 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { LoginScreen } from '../../components/LoginScreen';
+import { SignUp } from '../../components/SignupScreen';
 
 export default function HomeScreen() {
   return (
-    <LoginScreen/>
+    <SignUp/>
+    // <LoginScreen/>
+
     // <ParallaxScrollView
     //   headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
     //   headerImage={
