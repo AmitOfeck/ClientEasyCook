@@ -1,24 +1,14 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  SafeAreaView,
-  Platform,
-  StatusBar,
-  Linking
-} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, SafeAreaView, Platform, StatusBar, Linking } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { InputField } from './InputField';
 
 export const SignUp = () => {
   const navigation = useNavigation();
   const [formData, setFormData] = useState({
-    fullName: '',
+    name: '',
     email: '',
-    mobileNumber: '',
+    //mobileNumber: '',
     address: '',
     password: '',
     confirmPassword: ''
@@ -51,8 +41,8 @@ export const SignUp = () => {
         <View style={styles.formContainer}>
           <InputField
             label="Full Name"
-            value={formData.fullName}
-            onChange={(text) => setFormData({ ...formData, fullName: text })}
+            value={formData.name}
+            onChange={(text) => setFormData({ ...formData, name: text })}
           />
 
           <InputField
@@ -62,11 +52,11 @@ export const SignUp = () => {
             type="email"
           />
 
-          <InputField
+          {/* <InputField
             label="Mobile Number"
             value={formData.mobileNumber}
             onChange={(text) => setFormData({ ...formData, mobileNumber: text })}
-          />
+          /> */}
 
           <InputField
             label="Address"
