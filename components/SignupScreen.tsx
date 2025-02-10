@@ -14,8 +14,43 @@ export const SignUp = () => {
     confirmPassword: ''
   });
 
-  const handleSignUp = () => {
-    // Handle sign up logic
+  const handleSignUp = async () => {
+
+    try {
+      const response = await fetch("http://10.0.2.2:3000/user/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+        cache: "no-cache" // Disable caching
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        console.log("Registration successful:", data);
+      } else {
+        console.error("Registration failed:", data);
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
+
+    // Check if the error is a network error or a more specific one
+    if (error instanceof Error) {
+      console.error("Error message:", error.message);  // Display the error message
+      console.error("Stack trace:", error.stack);  // Show the stack trace
+    } else {
+      console.error("Unknown error:", error);
+    }
+
+    // If it's a fetch error or network issue, display more specific data
+    if ((error as any).response) {
+      if ((error as any).response) {
+        console.error("Response data:", (error as any).response);
+      }
+    }
+    }
   };
 
   const handleTermsPress = () => {
