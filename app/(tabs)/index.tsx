@@ -9,7 +9,7 @@ import { SignUp } from '../../components/SignupScreen';
 
 export default function HomeScreen() {
   return (
-    <SignUp/>
+    <LoginScreen/>
     // <LoginScreen/>
 
     // <ParallaxScrollView

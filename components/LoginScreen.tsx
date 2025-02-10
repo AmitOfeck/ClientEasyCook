@@ -8,6 +8,30 @@ export const LoginScreen: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const handleLogin = async () => {
+
+    try {
+      const response = await fetch("http://10.0.2.2:3000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({email: email, password: password}),
+        cache: "no-cache" 
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        console.log("Registration successful:", data);
+      } else {
+        console.error("Registration failed:", data);
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
+    }
+  };
+
 
   return (
     <ScrollView contentContainerStyle={styles.scrollView}>
@@ -37,7 +61,7 @@ export const LoginScreen: React.FC = () => {
         </View>
 
         <View style={styles.buttonsContainer}>
-          <ActionButton label="Log In" onPress={() => {}} />
+          <ActionButton label="Log In" onPress={handleLogin} />
           <ActionButton label="Sign up" onPress={() => {}} />
         </View>
 

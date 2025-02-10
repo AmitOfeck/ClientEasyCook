@@ -23,7 +23,7 @@ export const SignUp = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
-        cache: "no-cache" // Disable caching
+        cache: "no-cache" 
       });
   
       const data = await response.json();
@@ -35,21 +35,6 @@ export const SignUp = () => {
       }
     } catch (error) {
       console.error("Error during registration:", error);
-
-    // Check if the error is a network error or a more specific one
-    if (error instanceof Error) {
-      console.error("Error message:", error.message);  // Display the error message
-      console.error("Stack trace:", error.stack);  // Show the stack trace
-    } else {
-      console.error("Unknown error:", error);
-    }
-
-    // If it's a fetch error or network issue, display more specific data
-    if ((error as any).response) {
-      if ((error as any).response) {
-        console.error("Response data:", (error as any).response);
-      }
-    }
     }
   };
 
