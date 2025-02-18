@@ -14,6 +14,7 @@ export const SignUp = () => {
   const navigation = useNavigation();
   const [formData, setFormData] = useState({
     name: '',
+    userName: '',
     email: '',
     address: {
       city: '',
@@ -73,6 +74,12 @@ export const SignUp = () => {
             label="Full Name"
             value={formData.name}
             onChange={(text) => setFormData({ ...formData, name: text })}
+          />
+
+          <InputField
+            label="User Name"
+            value={formData.userName}
+            onChange={(text) => setFormData({ ...formData, userName: text })}
           />
 
           <InputField
