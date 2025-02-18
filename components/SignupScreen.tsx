@@ -3,27 +3,37 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView, SafeAreaView, Pla
 import { useNavigation } from '@react-navigation/native';
 import { InputField } from './InputField';
 
+// הגדרת הממשק לכתובת
+interface IAddress {
+  city: string;
+  street: string;
+  building: number;
+}
+
 export const SignUp = () => {
   const navigation = useNavigation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    //mobileNumber: '',
-    address: '',
+    address: {
+      city: '',
+      street: '',
+      building: 0,
+    } as IAddress,
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
   });
 
   const handleSignUp = async () => {
-
     try {
+      console.log(formData)
       const response = await fetch("http://10.0.2.2:3000/user/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
-        cache: "no-cache" 
+        cache: "no-cache"
       });
   
       const data = await response.json();
@@ -72,16 +82,40 @@ export const SignUp = () => {
             type="email"
           />
 
-          {/* <InputField
-            label="Mobile Number"
-            value={formData.mobileNumber}
-            onChange={(text) => setFormData({ ...formData, mobileNumber: text })}
-          /> */}
+
 
           <InputField
-            label="Address"
-            value={formData.address}
-            onChange={(text) => setFormData({ ...formData, address: text })}
+            label="City"
+            value={formData.address.city}
+            onChange={(text) =>
+              setFormData({
+                ...formData,
+                address: { ...formData.address, city: text }
+              })
+            }
+            type="text"
+            keyboardType="default"
+          />
+
+          <InputField
+            label="Street"
+            value={formData.address.street}
+            onChange={(text) =>
+              setFormData({
+                ...formData,
+                address: { ...formData.address, street: text }
+              })
+            }
+            type="text"
+            keyboardType="default"
+          />
+
+          <InputField
+            label="Building"
+            value={formData.address.building.toString()}
+            onChange={(text) => setFormData({ ...formData, address: { ...formData.address, building: parseInt(text) || 0 } })}
+            type="number"
+            keyboardType="numeric"
           />
 
           <InputField

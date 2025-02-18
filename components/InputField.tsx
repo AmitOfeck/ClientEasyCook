@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, TextInput, Image, StyleSheet } from 'react-native';
-
 import { InputFieldProps } from './types';
 
 export const InputField: React.FC<InputFieldProps> = ({
